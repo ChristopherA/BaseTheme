@@ -1,5 +1,7 @@
 <ul>
     {% for page in site.pages %}
-      <li>{{ page.title }} - {{ page.permalink }}</li>
+      <li>
+        <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+      </li>
     {% endfor %}
 </ul>
