@@ -1,0 +1,8 @@
+<ul class="page-list">
+  {% assign pages = site.pages | where_exp:"page","page.title != nil" %}
+  {% for page in pages %}
+    <li>
+      <a href="{{ page.url | relative_url }}">{{ page.title }}: {{ page.description }}</a>
+    </li>
+  {% endfor %}
+</ul>
