@@ -1,0 +1,26 @@
+{% assign pages = site.pages | where: "layout", "default" | sort: "permalink" %}
+
+<ul>
+  {% assign previous_path = "" %}
+  {% for page in pages %}
+    {% assign current_path = page.permalink | split: "/" %}
+    {% assign depth = current_path | size %}
+
+    {%- comment -%}
+    Close previous sublist if moving up in the hierarchy
+    {%- endcomment -%}
+    {% if previous_path != "" and current_path[0] != previous_path[0] %}
+      </ul>
+    {% endif %}
+
+    {%- comment -%}
+    Add the current page to the list
+    {%- endcomment -%}
+    <li>
+      <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+      {% if page.description %} - {{ page.description }}{% endif %}
+    </li>
+
+    {% assign previous_path = current_path %}
+  {% endfor %}
+</ul>
