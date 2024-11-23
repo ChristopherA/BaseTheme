@@ -101,3 +101,13 @@ If you prefer to start from scratch rather than using the template:
     jekyll serve     # Start local server at http://localhost:4000
     ```
    More details for running Jekyll locally are at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
+
+## Required Front Matter
+---
+layout: [default|post]
+title: "Page Title"
+---
+
+## Optional Front Matter
+description: "SEO description"
+date: YYYY-MM-DD  # (posts only)

@@ -7,27 +7,39 @@ body {
 }
 
 header,
-footer {
-padding: 1rem 0;
-text-align: center;
+    footer {
+    padding: 1rem 0;
+    text-align: center;
 }
 
 a {
-color: #007acc;
+    color: #007acc;
 }
 
 .post-date {
-color: #666;
-font-size: 0.9rem;
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .page-list,
 .post-list {
-padding: 0;
+    padding: 0;
 }
 
 .page-list li,
 .post-list li {
-margin: 1rem 0;
-list-style: none;
+    margin: 1rem 0;
+    list-style: none;
+}
+
+@media print {
+    nav, footer { display: none; }
+    body { margin: 1in; }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+      background: #1a1a1a;
+      color: #fff;
+    }
 }
