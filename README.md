@@ -1,198 +1,124 @@
-# BaseTheme-DemoSite
+# BaseTheme
 
-This is a demonstration and template site built using [BaseTheme](https://github.com/ChristopherA/BaseTheme). While BaseTheme provides an essential, lean foundation for static sites on GitHub Pages, this DemoSite shows how to build upon that foundation, illustrating both basic usage and optional features like blog posts.
-
-Think of BaseTheme as your starting point - the essential building blocks. This DemoSite shows you how to put those blocks together into a complete website.
+A Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages.
 
 ## Features
 
-### Core Features (From BaseTheme)
 - 🪶 Minimal, no-bloat foundation
 - 🔍 SEO-friendly metadata
 - 🗺️ Search engine sitemap
 - 📱 Mobile-first responsive design
-- ♿️ Accessibility built-in
+- ♿️ WCAG accessibility compliant
 - 🌙 Dark mode support
 - 🖨️ Print-friendly styles
 - 🚫 No JavaScript required
 - 🎨 Easy to customize
 
-### Additional Features (Demonstrated Here)
-- 📝 Automatic page layouts (reduces front matter boilerplate)
-- 📖 Automatic page titles from headings
-- 📑 Multiple page support with navigation
-- ✍️ Blog post support
-- 📰 RSS feed for blog posts
+## Demo & Template
 
-## See It In Action
-- View the [live demo](https://christophera.github.io/BaseTheme-DemoSite/)
-- See [BaseTheme](https://github.com/ChristopherA/BaseTheme) for core foundation
-- Full template files in this repository
+See it in action:
+- [Live Demo](https://christophera.github.io/BaseTheme-DemoSite/) - shows both basic usage and optional features
+- [Demo Source](https://github.com/ChristopherA/BaseTheme-DemoSite) - includes additional blog features
 
 ## Quick Start
 
-1. Use GitHub's "Use this template" button to create your repository
-2. Edit `_config.yml`:
+If you prefer to start from scratch rather than using the template:
+
+1. Configure your `_config.yml`:
     ```yaml
     # Theme Settings
     remote_theme: "ChristopherA/BaseTheme@main"
-    
-    # Core Plugins (from BaseTheme - do not remove these)
+
+    # Required Plugins
     plugins:
       - jekyll-remote-theme    # Required for remote themes
       - jekyll-seo-tag        # Required for SEO meta tags
       - jekyll-sitemap        # Required for search engines
 
-    # Optional Plugins (remove these if you don't use them)
-      - jekyll-titles-from-headings  # Optional - auto-detects titles from content
-      - jekyll-default-layout     # Optional - removes need for layout in front matter
-    
-    # Blog Features (remove this section if not using blog posts)
-      - jekyll-feed  # Optional - adds RSS feed for blog posts
-    
     # Site Settings
     title: "Your Site Title"
     description: "Your site description"
-    url: "https://yourusername.github.io"
+    url: "https://yourusername.github.io"  # Root URL where site will be hosted
     baseurl: "/your-repo-name"  # Leave empty if hosting at root URL
-    
-    # Navigation (remove pages you don't use)
+
+    # Optional Settings
     navigation:
       - title: Home
         url: /
-      - title: About    # Remove if not using About page
+      - title: About
         url: /about/
-      - title: Blog     # Remove if not using blog
-        url: /blog/
+    date_format: "%B %d, %Y"  # Default date format for posts
 
-    # Blog Settings (remove if not using blog posts)
-    feed:
-      path: feed.xml
-      posts_limit: 20
+    # Jekyll Settings
+    markdown: kramdown
+    collections:
+      pages:
+        output: true
     ```
-3. Enable GitHub Pages in your repository settings
 
-## File Structure
-```
-.
-├── _config.yml          # Site configuration
-├── _pages/             # Static pages (optional)
-│   ├── about.md        # Example web page (remove if not using)
-│   └── blog.md         # Blog index page (remove if not using blog)
-├── _posts/             # Blog posts (remove if not using blog)
-│   └── YYYY-MM-DD-*.md # Post files
-└── index.md            # Home page
-```
+2. Create your home page `index.md`:
+    ```yaml
+    ---
+    layout: default
+    title: Home
+    ---
 
-## Creating Content
+    Welcome to your new site!
+    ```
 
-### Page and Post Titles
+3. Create a sample post in `_posts/YYYY-MM-DD-title.md` (optional - only if you want blog features):
+    ```yaml
+    ---
+    layout: post
+    title: "Your First Post"
+    date: YYYY-MM-DD
+    description: "Optional SEO description"
+    ---
 
-Thanks to the `jekyll-titles-from-headings` plugin, you don't need to specify a title in your front matter. The title will be automatically taken from the first header (H1) in your content. For example:
+    Your post content here.
+    ```
 
+4. Deploy to GitHub Pages:
+    Follow GitHub's official guide to [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site). Make sure to:
+    - Create a new repository
+    - Push your files to the appropriate branch (usually `main` or `gh-pages`)
+    - Enable GitHub Pages in your repository settings
+
+5. Optional: Run Jekyll locally:
+   SIDENOTE: Personally, I rarely do this, and instead rely on the free GitHub Pages infrastructure.
+
+   To run Jekyll locally, you'll need install Ruby and Jekyll for your operating system:
+   - macOS: `brew install ruby jekyll`
+   - Ubuntu/Debian: `sudo apt install ruby-full jekyll`
+   - Windows: See [Jekyll on Windows](https://jekyllrb.com/docs/installation/windows/)
+
+   Then run:
+    ```zsh
+    bundle install   # Install required gems
+    jekyll serve     # Start local server at http://localhost:4000
+    ```
+   More details for running Jekyll locally are at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
+
+## Required Front Matter
 ```yaml
 ---
-description: "About this site"  # Optional but good for SEO
-permalink: /about/
----
-# About This Site
-
-Welcome to my site!
-```
-
-The title "About This Site" will be automatically used as the page title. Only add `title:` to your front matter if you want to override the H1 header, such as:
-
-```yaml
----
-title: "Different Title Than Header"  # This will override the H1 below
-description: "About this site"
-permalink: /about/
----
-# About This Site
-
-Welcome to my site!
-```
-
-In this case, "Different Title Than Header" will be used as the page title instead of "About This Site".
-
-### Page URLs (Permalinks)
-
-For pages in the `_pages` directory:
-- If you specify a `permalink:` in the front matter, that exact URL path will be used
-- If you don't specify a permalink, Jekyll will automatically create a URL based on the filename:
-  - `_pages/about.md` becomes `/about/`
-  - `_pages/topics/specific.md` becomes `/topics/specific/`
-
-Blog posts automatically get URLs based on their filename pattern:
-`_posts/YYYY-MM-DD-title.md` becomes `/YYYY/MM/DD/title/`
-
-### Static Pages (Optional)
-Create pages in `_pages/` (remove directory if only using home page):
-```yaml
----
-description: "About this site"  # Optional but good for SEO
-permalink: /about/            # Optional - defaults to filename-based path
----
-# About This Site
-
-Welcome to my site!
-```
-
-### Blog Posts (Optional)
-If you want a blog, add posts in `_posts/` (remove directory if not using blog):
-```yaml
----
-description: "Introduction"  # Optional but good for SEO
-date: 2024-11-21           # Required for blog posts
----
-# My First Post
-
-Hello world!
-```
-
-Note: The layout will be automatically set based on the file location - posts get the 'post' layout, other pages get the 'default' layout.
-
-## Front Matter Reference
-
-Required only for posts:
-```yaml
----
-date: YYYY-MM-DD   # Date required for blog posts
+layout: [default|post]
+title: "Page Title"
 ---
 ```
 
-Common optional front matter:
+## Optional Front Matter
 ```yaml
 ---
 description: "SEO description"  # Recommended for SEO
-permalink: /custom-url/        # Custom URL path
-title: "Override Title"        # Only needed if different from first H1
+date: YYYY-MM-DD              # Required for posts only
 ---
 ```
 
-## Local Development
-
-While most users can rely on the free GitHub Pages infrastructure, you can optionally run Jekyll locally:
-
-SIDENOTE: Most users do not need to run Jekyll locally - GitHub Pages will automatically build and serve your site.
-
-If you do want to run locally, install Ruby and Jekyll for your operating system:
-- macOS: `brew install ruby jekyll`
-- Ubuntu/Debian: `sudo apt install ruby-full jekyll`
-- Windows: See [Jekyll on Windows](https://jekyllrb.com/docs/installation/windows/)
-
-Then run:
-```zsh
-bundle install   # Install required gems
-jekyll serve     # Start local server at http://localhost:4000
-```
-
-More details are available at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
-
 ## License
 
-Released under [CC0](LICENSE) ("No Rights Reserved"). Use freely without attribution.
+This theme is released under [CC0](LICENSE) ("No Rights Reserved"). You can copy, modify, distribute and use the theme without attribution or permission. For more details, see the [LICENSE](LICENSE) file.
 
 ## Author
 
-Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA))
+Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA) | ChristopherA@LifeWithAlacrity.com)
