@@ -1,28 +1,59 @@
 /*
  * BaseTheme: An essential Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages.
  *
- * BaseTheme Styles
- * 1. Custom Properties
- * 2. Reset
- * 3. Base Styles
- * 4. Layout
+ * Table of Contents:
+ * 1. Custom Properties (CSS Variables)
+ * 2. Reset & Base Styles
+ * 3. Typography
+ * 4. Layout & Structure
  * 5. Components
- * 6. Utilities
+ *    - Header
+ *    - Navigation
+ *    - Main Content
+ *    - Footer
+ * 6. Utilities & Helpers
  * 7. Media Queries
+ *    - Dark Mode
+ *    - Print Styles
+ *    - Accessibility
+ *    - Responsive Adjustments
  */
 
 /* -----------------------------
  * 1. Custom Properties
+ * Core design tokens for consistent theming
  * ----------------------------- */
  :root {
+    /* Colors */
     --text-color: #333;
     --bg-color: #fff;
     --link-color: #007acc;
+    --header-bg: #f8f9fa;
+    --footer-bg: #f8f9fa;
+    --border-color: #e1e4e8;
+    --nav-active-bg: #f0f0f0;
+
+    /* Spacing */
+    --section-spacing: 2rem;
+    --content-padding: 1rem;
+    --item-spacing: 1rem;
+
+    /* Layout */
+    --content-width: 800px;
+    --border-radius: 4px;
+
+    /* Typography */
+    --font-family-base: system-ui, -apple-system, sans-serif;
+    --line-height-base: 1.6;
+    --font-size-base: calc(1rem + 0.5vw);
+    
+    /* Focus */
     --focus-outline: 3px solid #007acc;
 }
 
 /* -----------------------------
- * 2. Reset
+ * 2. Reset & Base Styles
+ * Core styling foundation
  * ----------------------------- */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -30,78 +61,161 @@
     padding: 0;
 }
 
-/* -----------------------------
- * 3. Base Styles
- * ----------------------------- */
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-base);
     color: var(--text-color);
     background: var(--bg-color);
-    font-size: calc(1rem + 0.5vw);
+    font-size: var(--font-size-base);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+/* -----------------------------
+ * 3. Typography
+ * Text styles and vertical rhythm
+ * ----------------------------- */
+h1, h2, h3 {
+    margin-bottom: var(--item-spacing);
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
 }
 
 /* -----------------------------
- * 4. Layout
+ * 4. Layout & Structure
+ * Core layout containers and grid
  * ----------------------------- */
-body {
-    max-width: 800px;
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--content-width);
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 var(--content-padding);
 }
 
 /* -----------------------------
  * 5. Components
+ * Individual UI components
  * ----------------------------- */
-/* Navigation */
+
+/* Header Component */
+.site-header {
+    background: var(--header-bg);
+    padding: var(--content-padding);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--section-spacing);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.site-header a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* Navigation Component */
+nav {
+    margin-top: var(--item-spacing);
+}
+
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
-}
-
-nav li {
-    display: inline-block;
-    margin-right: 1rem;
+    margin: 0;
+    display: flex;
+    gap: var(--item-spacing);
 }
 
 nav a {
-    text-decoration: none;
-    color: var(--link-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease;
 }
 
-nav a:hover,
-nav a:focus {
-    text-decoration: underline;
+nav a:hover {
+    background: var(--nav-active-bg);
 }
 
 nav a.active {
-    font-weight: bold;
+    background: var(--nav-active-bg);
+    font-weight: 500;
 }
 
-/* Interactive Elements */
-a, button {
-    padding: 0.5rem;
-    margin: -0.5rem;
-    border-radius: 4px;
+/* Content Lists Component */
+.page-list,
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--section-spacing) 0;
 }
 
-/* Skip Link */
+.page-list-item,
+.post-list-item {
+    padding: var(--content-padding);
+    margin-bottom: var(--item-spacing);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+/* Post Component */
+article {
+    margin-bottom: var(--section-spacing);
+}
+
+.post-date {
+    display: block;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Footer Component */
+.site-footer {
+    background: var(--footer-bg);
+    padding: 1.5rem var(--content-padding);
+    margin-top: var(--section-spacing);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* -----------------------------
+ * 6. Utilities & Helpers
+ * Helper classes and utilities
+ * ----------------------------- */
 .skip-link {
     position: absolute;
     top: -40px;
     left: 0;
-    padding: 8px;
     background: var(--link-color);
     color: white;
+    padding: 8px;
     z-index: 100;
 }
 
@@ -110,46 +224,50 @@ a, button {
 }
 
 /* -----------------------------
- * 6. Utilities
- * ----------------------------- */
-:focus {
-    outline: var(--focus-outline);
-    outline-offset: 2px;
-}
-
-/* -----------------------------
  * 7. Media Queries
+ * Responsive and context-based styles
  * ----------------------------- */
-/* Mobile Navigation */
-@media (max-width: 600px) {
-    nav li {
-        display: block;
-        margin: 0.5rem 0;
-    }
-}
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: #fff;
+        --text-color: #e1e1e1;
         --bg-color: #1a1a1a;
-        --link-color: #66b3ff;
+        --link-color: #4DA8FF;
+        --header-bg: #252525;
+        --footer-bg: #252525;
+        --border-color: #333;
+        --nav-active-bg: #333;
     }
-    
+
     body {
         font-weight: 350;
+    }
+
+    .page-list-item,
+    .post-list-item {
+        background: var(--header-bg);
+    }
+
+    .site-footer {
+        color: var(--text-color);
+        opacity: 0.8;
     }
 }
 
 /* Print Styles */
 @media print {
+    .site-header,
+    .site-footer {
+        background: none;
+    }
+
     body {
-        margin: 1.5cm;
         color: black;
         background: white;
     }
-    
-    nav, 
+
+    nav,
     .skip-link {
         display: none;
     }
@@ -160,8 +278,25 @@ a, button {
     :root {
         --focus-outline: 3px solid CanvasText;
     }
+
+    .page-list-item,
+    .post-list-item {
+        border: 1px solid CanvasText;
+    }
 }
 
+/* Mobile Navigation */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav a {
+        display: block;
+    }
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation: none !important;

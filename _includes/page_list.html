@@ -1,8 +1,17 @@
-<ul class="page-list">
-  {% assign pages = site.pages | where_exp:"page","page.title != nil" %}
-  {% for page in pages %}
-    <li>
-      <a href="{{ page.url | relative_url }}">{{ page.title }}: {{ page.description }}</a>
-    </li>
+<ul class="post-list">
+  {% for post in site.posts %}
+      <li class="post-list-item">
+          <article>
+              <h2 class="post-title">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h2>
+              {% if post.description %}
+              <p class="post-description">{{ post.description }}</p>
+              {% endif %}
+              <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+                  {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
+              </time>
+          </article>
+      </li>
   {% endfor %}
 </ul>
