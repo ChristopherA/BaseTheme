@@ -1,17 +1,13 @@
 <ul class="post-list">
-    {% for post in site.posts %}
-        <li class="post-list-item">
-            <article>
-                <h2 class="post-title">
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h2>
-                {% if post.description %}
-                <p class="post-description">{{ post.description }}</p>
-                {% endif %}
-                <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-                    {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
-                </time>
-            </article>
-        </li>
-    {% endfor %}
+  {% for post in site.posts %}
+    <li class="post-list-item">
+      <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
+      {% if post.description %}
+      <p class="post-description">{{ post.description }}</p>
+      {% endif %}
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+        {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
+      </time>
+    </li>
+  {% endfor %}
 </ul>

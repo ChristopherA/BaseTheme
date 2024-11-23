@@ -2,6 +2,8 @@
 
 A Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages.
 
+For examples of building on this foundation, see the [demo site](https://christophera.github.io/BaseTheme-DemoSite/) and its [source](https://github.com/ChristopherA/BaseTheme-DemoSite).
+
 ## Features
 
 - 🪶 Minimal, no-bloat foundation

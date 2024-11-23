@@ -1,13 +1,13 @@
 <ul class="page-list">
   {% assign pages = site.pages | where_exp:"page","page.title != nil" %}
   {% for page in pages %}
+    {% unless page.url contains "/posts/" or page.url == "/" %}
       <li class="page-list-item">
-          <h2 class="page-title">
-              <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
-          </h2>
-          {% if page.description %}
-          <p class="page-description">{{ page.description }}</p>
-          {% endif %}
+        <a href="{{ page.url | relative_url }}" class="page-title">{{ page.title }}</a>
+        {% if page.description %}
+        <p class="page-description">{{ page.description }}</p>
+        {% endif %}
       </li>
+    {% endunless %}
   {% endfor %}
 </ul>

@@ -1,6 +1,21 @@
 <header>
   <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
   {% if site.navigation %}
-      {% include navigation.html %}
+      <nav aria-label="Main navigation">
+          <ul role="menu">
+              {% for item in site.navigation %}
+              <li role="none">
+                  <a href="{{ item.url | relative_url }}" 
+                     role="menuitem"
+                     {% if page.url == item.url %}
+                     aria-current="page"
+                     class="active"
+                     {% endif %}>
+                     {{ item.title }}
+                  </a>
+              </li>
+              {% endfor %}
+          </ul>
+      </nav>
   {% endif %}
 </header>

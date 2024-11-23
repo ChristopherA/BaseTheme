@@ -3,16 +3,24 @@
  *
  * Table of Contents:
  * 1. Custom Properties (CSS Variables)
+ *    - Colors
+ *    - Typography
+ *    - Layout & Spacing
  * 2. Reset & Base Styles
  * 3. Typography
+ *    - Base Typography
+ *    - Links
+ *    - Headers
  * 4. Layout & Structure
  * 5. Components
  *    - Header
  *    - Navigation
- *    - Main Content
+ *    - Content Lists
+ *    - Posts
  *    - Footer
  * 6. Utilities & Helpers
  * 7. Media Queries
+ *    - Responsive Typography
  *    - Dark Mode
  *    - Print Styles
  *    - Accessibility
@@ -24,282 +32,396 @@
  * Core design tokens for consistent theming
  * ----------------------------- */
  :root {
-    /* Colors */
-    --text-color: #333;
-    --bg-color: #fff;
-    --link-color: #007acc;
-    --header-bg: #f8f9fa;
-    --footer-bg: #f8f9fa;
-    --border-color: #e1e4e8;
-    --nav-active-bg: #f0f0f0;
+  /* Colors */
+  --text-color: #333;
+  --text-color-muted: rgba(51, 51, 51, 0.8);
+  --bg-color: #fff;
+  --link-color: #007acc;
+  --header-bg: #f8f9fa;
+  --footer-bg: #f8f9fa;
+  --border-color: #e1e4e8;
+  --nav-active-bg: #e9ecef;
+  --nav-active-border: #007acc;
 
-    /* Spacing */
-    --section-spacing: 2rem;
-    --content-padding: 1rem;
-    --item-spacing: 1rem;
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, sans-serif;
+  --line-height-base: 1.6;
+  --font-size-base: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-large: 1.125rem;
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.25rem;
 
-    /* Layout */
-    --content-width: 800px;
-    --border-radius: 4px;
-
-    /* Typography */
-    --font-family-base: system-ui, -apple-system, sans-serif;
-    --line-height-base: 1.6;
-    --font-size-base: calc(1rem + 0.5vw);
-    
-    /* Focus */
-    --focus-outline: 3px solid #007acc;
+  /* Layout & Spacing */
+  --content-width: 800px;
+  --border-radius: 4px;
+  --section-spacing: 2rem;
+  --content-padding: 1rem;
+  --item-spacing: 1rem;
+  --nav-item-spacing: 0.75rem;
+  --focus-outline: 3px solid var(--link-color);
 }
 
 /* -----------------------------
- * 2. Reset & Base Styles
- * Core styling foundation
- * ----------------------------- */
+* 2. Reset & Base Styles
+* Core styling foundation
+* ----------------------------- */
 *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    font-size: 100%;
-    -webkit-text-size-adjust: 100%;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: var(--font-family-base);
-    line-height: var(--line-height-base);
-    color: var(--text-color);
-    background: var(--bg-color);
-    font-size: var(--font-size-base);
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-base);
+  color: var(--text-color);
+  background: var(--bg-color);
+  font-size: var(--font-size-base);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* -----------------------------
- * 3. Typography
- * Text styles and vertical rhythm
- * ----------------------------- */
+* 3. Typography
+* Text styles and vertical rhythm
+* ----------------------------- */
+/* Headers */
 h1, h2, h3 {
-    margin-bottom: var(--item-spacing);
-    line-height: 1.3;
+  margin-bottom: var(--item-spacing);
+  line-height: 1.3;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
 
+/* Links */
 a {
-    color: var(--link-color);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
 a:hover {
-    opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* Post Date */
+.post-date {
+  display: block;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-size: var(--font-size-small);
+  margin-top: 0.5rem;
 }
 
 /* -----------------------------
- * 4. Layout & Structure
- * Core layout containers and grid
- * ----------------------------- */
+* 4. Layout & Structure
+* Core layout containers and grid
+* ----------------------------- */
 main {
-    flex: 1;
-    width: 100%;
-    max-width: var(--content-width);
-    margin: 0 auto;
-    padding: 0 var(--content-padding);
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
 }
 
 /* -----------------------------
- * 5. Components
- * Individual UI components
- * ----------------------------- */
+* 5. Components
+* Individual UI components
+* ----------------------------- */
 
 /* Header Component */
 .site-header {
-    background: var(--header-bg);
-    padding: var(--content-padding);
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: var(--section-spacing);
+  background: var(--header-bg);
+  padding: var(--content-padding);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--section-spacing);
 }
 
 .site-header h1 {
-    margin: 0;
-    font-size: 2rem;
+  margin: 0;
+  font-size: var(--font-size-h1);
 }
 
 .site-header a {
-    text-decoration: none;
-    color: var(--text-color);
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 /* Navigation Component */
 nav {
-    margin-top: var(--item-spacing);
+  margin-top: var(--item-spacing);
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: var(--item-spacing);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--nav-item-spacing);
 }
 
 nav a {
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    transition: background-color 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border-left: 3px solid transparent;
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
 }
 
 nav a:hover {
-    background: var(--nav-active-bg);
+  background: var(--nav-active-bg);
 }
 
 nav a.active {
-    background: var(--nav-active-bg);
-    font-weight: 500;
+  background: var(--nav-active-bg);
+  border-left-color: var(--nav-active-border);
+  font-weight: 500;
 }
 
 /* Content Lists Component */
 .page-list,
 .post-list {
-    list-style: none;
-    padding: 0;
-    margin: var(--section-spacing) 0;
+  list-style: none;
+  padding: 0;
+  margin: var(--section-spacing) 0;
 }
 
 .page-list-item,
 .post-list-item {
-    padding: var(--content-padding);
-    margin-bottom: var(--item-spacing);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+  padding: var(--content-padding);
+  margin-bottom: var(--item-spacing);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
-/* Post Component */
-article {
-    margin-bottom: var(--section-spacing);
+.page-title,
+.post-title {
+  display: block;
+  font-size: var(--font-size-h2);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
-.post-date {
-    display: block;
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+.page-title:hover,
+.post-title:hover {
+  color: var(--link-color);
+}
+
+.page-description,
+.post-description {
+  margin: 0.5rem 0;
+  font-size: var(--font-size-base);
 }
 
 /* Footer Component */
 .site-footer {
-    background: var(--footer-bg);
-    padding: 1.5rem var(--content-padding);
-    margin-top: var(--section-spacing);
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    font-size: 0.9rem;
+  background: var(--footer-bg);
+  padding: 1.5rem var(--content-padding);
+  margin-top: var(--section-spacing);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: var(--font-size-small);
 }
 
 /* -----------------------------
- * 6. Utilities & Helpers
- * Helper classes and utilities
- * ----------------------------- */
+* 6. Utilities & Helpers
+* Helper classes and utilities
+* ----------------------------- */
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--link-color);
-    color: white;
-    padding: 8px;
-    z-index: 100;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--link-color);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.2s ease;
 }
 
 .skip-link:focus {
-    top: 0;
+  top: 0;
+  outline: var(--focus-outline);
+  outline-offset: -2px;
 }
 
 /* -----------------------------
- * 7. Media Queries
- * Responsive and context-based styles
- * ----------------------------- */
+* 7. Media Queries
+* Responsive and context-based styles
+* ----------------------------- */
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+  :root {
+      --font-size-base: 1.125rem;
+      --font-size-small: 1rem;
+      --font-size-large: 1.25rem;
+      --font-size-h1: 2.5rem;
+      --font-size-h2: 2rem;
+      --font-size-h3: 1.5rem;
+  }
+}
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --text-color: #e1e1e1;
-        --bg-color: #1a1a1a;
-        --link-color: #4DA8FF;
-        --header-bg: #252525;
-        --footer-bg: #252525;
-        --border-color: #333;
-        --nav-active-bg: #333;
-    }
+  :root {
+      --text-color: #f0f0f0;
+      --text-color-muted: rgba(240, 240, 240, 0.8);
+      --bg-color: #1a1a1a;
+      --link-color: #66b3ff;
+      --header-bg: #252525;
+      --footer-bg: #252525;
+      --border-color: #404040;
+      --nav-active-bg: #2a2a2a;
+      --nav-active-border: #66b3ff;
+      --focus-outline: 3px solid #66b3ff;
+  }
 
-    body {
-        font-weight: 350;
-    }
+  .page-list-item,
+  .post-list-item {
+      background: var(--header-bg);
+  }
 
-    .page-list-item,
-    .post-list-item {
-        background: var(--header-bg);
-    }
+  .site-footer {
+      color: var(--text-color);
+  }
 
-    .site-footer {
-        color: var(--text-color);
-        opacity: 0.8;
-    }
+  .site-header a {
+      color: var(--text-color);
+  }
+
+  .post-date {
+      opacity: 0.9;
+  }
 }
 
 /* Print Styles */
 @media print {
-    .site-header,
-    .site-footer {
-        background: none;
-    }
+  /* Reset backgrounds and colors for readability */
+  .site-header,
+  .site-footer {
+      background: none;
+      border: none;
+      margin: 0;
+      padding: 0.5cm;
+  }
 
-    body {
-        color: black;
-        background: white;
-    }
+  body {
+      color: black;
+      background: white;
+      font-size: 12pt;
+      line-height: 1.5;
+  }
 
-    nav,
-    .skip-link {
-        display: none;
-    }
+  /* Hide non-essential elements */
+  nav,
+  .skip-link {
+      display: none;
+  }
+
+  /* Layout adjustments */
+  main {
+      max-width: none;
+      margin: 0;
+      padding: 0.5cm;
+  }
+
+  /* Content formatting */
+  h1, h2, h3 {
+      page-break-after: avoid;
+      page-break-inside: avoid;
+  }
+
+  article, 
+  .page-list-item,
+  .post-list-item {
+      page-break-inside: avoid;
+      border: none;
+      padding: 0;
+      margin: 1cm 0;
+  }
+
+  /* Link handling */
+  a {
+      color: black;
+      text-decoration: none;
+  }
+
+  a[href]::after {
+      content: " (" attr(href) ")";
+      font-size: 90%;
+      font-style: italic;
+      word-wrap: break-word;
+  }
+
+  /* Don't show URL for site navigation or internal anchors */
+  a[href^="/"]:after,
+  a[href^="#"]:after {
+      content: "";
+  }
+
+  /* Ensure dates are visible */
+  .post-date {
+      color: black;
+      opacity: 1;
+  }
+
+  /* Page margins and breaks */
+  @page {
+      margin: 2cm;
+  }
 }
 
 /* Accessibility */
 @media (forced-colors: active) {
-    :root {
-        --focus-outline: 3px solid CanvasText;
-    }
+  :root {
+      --focus-outline: 3px solid CanvasText;
+  }
 
-    .page-list-item,
-    .post-list-item {
-        border: 1px solid CanvasText;
-    }
+  .page-list-item,
+  .post-list-item {
+      border: 1px solid CanvasText;
+  }
 }
 
 /* Mobile Navigation */
 @media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-    }
+  nav ul {
+      flex-direction: column;
+      gap: 0;
+  }
 
-    nav a {
-        display: block;
-    }
+  nav a {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 0.25rem 0;
+      border-left: none;
+      border-left-width: 0;
+      border-radius: 0;
+  }
+
+  nav a.active {
+      border-left: 3px solid var(--nav-active-border);
+  }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
+  * {
+      animation: none !important;
+      transition: none !important;
+  }
 }

@@ -12,12 +12,7 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <header role="banner" class="site-header">
-        <div class="site-branding">
-            <p class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
-        </div>
-        {% include navigation.html %}
-    </header>
+    {% include header.html %}
 
     <main id="main-content" role="main">
         {{ content }}
