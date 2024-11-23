@@ -77,7 +77,8 @@ Think of BaseTheme as your starting point - the essential building blocks. This 
 .
 ├── _config.yml          # Site configuration
 ├── _pages/             # Static pages (optional)
-│   └── about.md        # Example page (remove if not using)
+│   ├── about.md        # Example web page (remove if not using)
+│   └── blog.md         # Blog index page (remove if not using blog)
 ├── _posts/             # Blog posts (remove if not using blog)
 │   └── YYYY-MM-DD-*.md # Post files
 └── index.md            # Home page
