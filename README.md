@@ -2,41 +2,38 @@
 
 A minimal Jekyll remote theme designed as a clean starting point for your website.
 
-## License
+## Features
 
-This theme is released under [CC0](LICENSE) ("No Rights Reserved"). You can copy, modify, distribute and use the theme without attribution or permission. For more details, see the [LICENSE](LICENSE) file.
-
-## Author
-
-Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA) | ChristopherA@LifeWithAlacrity.com)
+- 🪶 Minimal, no-bloat foundation
+- 🔍 SEO-friendly metadata
+- 🗺️ Search engine sitemap
+- 📱 Mobile-first responsive design
+- ♿️ WCAG accessibility compliant
+- 🌙 Dark mode support
+- 🖨️ Print-friendly styles
+- 🚫 No JavaScript required
+- 🎨 Easy to customize
 
 ## Demo & Template
 
-See it in action: [Live Demo](https://christophera.github.io/BaseTheme-DemoSite/)
-
-Want to use this theme? You can:
-1. View the demo site's source code: [BaseTheme-DemoSite](https://github.com/ChristopherA/BaseTheme-DemoSite)
-2. Use BaseTheme-DemoSite as a template to start your own site
-
-The demo shows how to create both static pages and blog posts using BaseTheme.
+See it in action:
+- [Live Demo](https://christophera.github.io/BaseTheme-DemoSite/) - shows both basic usage and optional features
+- [Demo Source](https://github.com/ChristopherA/BaseTheme-DemoSite) - includes additional blog features
 
 ## Quick Start
 
 If you prefer to start from scratch rather than using the template:
 
-1. Create a new Jekyll site and add these to your `Gemfile`:
-    ```ruby
-    source "https://rubygems.org"
-    gem "jekyll", "~> 4.0"
-    gem "jekyll-remote-theme"
-    ```
-
-2. Configure your `_config.yml`:
+1. Configure your `_config.yml`:
     ```yaml
     # Theme Settings
     remote_theme: "ChristopherA/BaseTheme@main"
+
+    # Required Plugins
     plugins:
-      - jekyll-remote-theme
+      - jekyll-remote-theme    # Required for remote themes
+      - jekyll-seo-tag        # Required for SEO meta tags
+      - jekyll-sitemap        # Required for search engines
 
     # Site Settings
     title: "Your Site Title"
@@ -59,7 +56,7 @@ If you prefer to start from scratch rather than using the template:
         output: true
     ```
 
-3. Create your home page `index.md`:
+2. Create your home page `index.md`:
     ```yaml
     ---
     layout: default
@@ -69,7 +66,7 @@ If you prefer to start from scratch rather than using the template:
     Welcome to your new site!
     ```
 
-4. Create a sample post in `_posts/YYYY-MM-DD-title.md`:
+3. Create a sample post in `_posts/YYYY-MM-DD-title.md` (optional - only if you want blog features):
     ```yaml
     ---
     layout: post
@@ -81,13 +78,13 @@ If you prefer to start from scratch rather than using the template:
     Your post content here.
     ```
 
-5. Deploy to GitHub Pages:
+4. Deploy to GitHub Pages:
     Follow GitHub's official guide to [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site). Make sure to:
     - Create a new repository
     - Push your files to the appropriate branch (usually `main` or `gh-pages`)
     - Enable GitHub Pages in your repository settings
 
-6. Optional: Run Jekyll locally:
+5. Optional: Run Jekyll locally:
    SIDENOTE: Personally, I rarely do this, and instead rely on the free GitHub Pages infrastructure.
 
    To run Jekyll locally, you'll need install Ruby and Jekyll for your operating system:
@@ -103,11 +100,25 @@ If you prefer to start from scratch rather than using the template:
    More details for running Jekyll locally are at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
 
 ## Required Front Matter
+```yaml
 ---
 layout: [default|post]
 title: "Page Title"
 ---
+```
 
 ## Optional Front Matter
-description: "SEO description"
-date: YYYY-MM-DD  # (posts only)
+```yaml
+---
+description: "SEO description"  # Recommended for SEO
+date: YYYY-MM-DD              # Required for posts only
+---
+```
+
+## License
+
+This theme is released under [CC0](LICENSE) ("No Rights Reserved"). You can copy, modify, distribute and use the theme without attribution or permission. For more details, see the [LICENSE](LICENSE) file.
+
+## Author
+
+Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA) | ChristopherA@LifeWithAlacrity.com)

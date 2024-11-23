@@ -1,45 +1,170 @@
+/*
+ * BaseTheme: An essential Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages.
+ *
+ * BaseTheme Styles
+ * 1. Custom Properties
+ * 2. Reset
+ * 3. Base Styles
+ * 4. Layout
+ * 5. Components
+ * 6. Utilities
+ * 7. Media Queries
+ */
+
+/* -----------------------------
+ * 1. Custom Properties
+ * ----------------------------- */
+ :root {
+    --text-color: #333;
+    --bg-color: #fff;
+    --link-color: #007acc;
+    --focus-outline: 3px solid #007acc;
+}
+
+/* -----------------------------
+ * 2. Reset
+ * ----------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* -----------------------------
+ * 3. Base Styles
+ * ----------------------------- */
 body {
-    font-family: system-ui, sans-serif; /* Use system fonts for better performance */
-    line-height: 1.5;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--bg-color);
+    font-size: calc(1rem + 0.5vw);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* -----------------------------
+ * 4. Layout
+ * ----------------------------- */
+body {
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
 }
 
-header,
-    footer {
-    padding: 1rem 0;
-    text-align: center;
-}
-
-a {
-    color: #007acc;
-}
-
-.post-date {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.page-list,
-.post-list {
-    padding: 0;
-}
-
-.page-list li,
-.post-list li {
-    margin: 1rem 0;
+/* -----------------------------
+ * 5. Components
+ * ----------------------------- */
+/* Navigation */
+nav ul {
     list-style: none;
+    padding: 0;
+    margin: 1rem 0;
 }
 
-@media print {
-    nav, footer { display: none; }
-    body { margin: 1in; }
+nav li {
+    display: inline-block;
+    margin-right: 1rem;
 }
 
+nav a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+nav a:hover,
+nav a:focus {
+    text-decoration: underline;
+}
+
+nav a.active {
+    font-weight: bold;
+}
+
+/* Interactive Elements */
+a, button {
+    padding: 0.5rem;
+    margin: -0.5rem;
+    border-radius: 4px;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    padding: 8px;
+    background: var(--link-color);
+    color: white;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* -----------------------------
+ * 6. Utilities
+ * ----------------------------- */
+:focus {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* -----------------------------
+ * 7. Media Queries
+ * ----------------------------- */
+/* Mobile Navigation */
+@media (max-width: 600px) {
+    nav li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff;
+        --bg-color: #1a1a1a;
+        --link-color: #66b3ff;
+    }
+    
     body {
-      background: #1a1a1a;
-      color: #fff;
+        font-weight: 350;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        margin: 1.5cm;
+        color: black;
+        background: white;
+    }
+    
+    nav, 
+    .skip-link {
+        display: none;
+    }
+}
+
+/* Accessibility */
+@media (forced-colors: active) {
+    :root {
+        --focus-outline: 3px solid CanvasText;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }

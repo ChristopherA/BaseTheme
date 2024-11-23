@@ -1,2 +1,28 @@
+# BaseTheme Configuration
+# An essential Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages.
+
+# Theme Identification
 name: "BaseTheme"
-description: "A custom, highly stripped-down, remote-theme to serve as a starting point for a minimal Jekyll site."
+description: "An essential Jekyll remote theme, crafted as a lean foundation for static sites on GitHub Pages."
+
+# Required Plugins
+# These are essential for core functionality - do not remove
+plugins:
+  - jekyll-remote-theme    # Required for using remote themes
+  - jekyll-seo-tag         # Required for SEO meta tags
+  - jekyll-sitemap         # Required for search engine sitemaps
+
+# Default Site Settings
+# These serve as examples and can be overridden by sites using this theme
+navigation:
+  - title: Home
+    url: /
+
+# Format Settings
+date_format: "%B %d, %Y"  # Default date format for posts and pages
+
+# Core Jekyll Settings
+markdown: kramdown         # Standard Jekyll Markdown renderer
+collections:              # Required for pages and posts functionality
+  pages:                 # Enables _pages collection
+    output: true        # Generates a page for each document in _pages

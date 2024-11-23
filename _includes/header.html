@@ -1,5 +1,6 @@
 <header>
-    <nav>
-      <h1><a href="{{ '/' | relative_url }}">Home</a></h1>
-    </nav>
+  <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+  {% if site.navigation %}
+      {% include navigation.html %}
+  {% endif %}
 </header>
