@@ -1,29 +1,28 @@
-<ul class="post-list">
-  {% assign posts = site.posts %}
-  {% if include.limit %}
-    {% assign posts = site.posts | limit: include.limit %}
-  {% endif %}
-  {% for post in posts %}
-    <li class="post-list-item">
-      <article>
-        <header>
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-            {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
-          </time>
-        </header>
-        {% if post.description %}
-          <p class="post-description">{{ post.description }}</p>
+<div class="list-container">
+  <ul class="post-list">
+    {% assign posts = site.posts %}
+    {% if include.limit %}
+      {% assign posts = site.posts | limit: include.limit %}
+    {% endif %}
+    {% for post in posts %}
+      <li class="post-list-item">
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+          {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
+        </time>
+        {% if post.excerpt %}
+          {{ post.excerpt }}
         {% endif %}
-        <footer>
-          <a href="{{ post.url | relative_url }}" class="read-more" aria-label="Continue reading {{ post.title }}">Continue reading<span class="sr-only"> {{ post.title }}</span></a>
-        </footer>
-      </article>
-    </li>
-  {% endfor %}
-</ul>
-{% if include.limit and site.posts.size > include.limit %}
-  <p class="view-all">
-    <a href="{{ '/blog/' | relative_url }}">View all posts</a>
-  </p>
-{% endif %}
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more</a>
+        {% unless forloop.last %}
+          <hr>
+        {% endunless %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% if include.limit and site.posts.size > include.limit %}
+    <p class="view-all">
+      <a href="{{ '/blog/' | relative_url }}">View all posts</a>
+    </p>
+  {% endif %}
+</div>
