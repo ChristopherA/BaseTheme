@@ -15,6 +15,9 @@
     {% include header.html %}
 
     <main id="main-content" role="main">
+        {% if page.title %}
+        <h1>{{ page.title }}</h1>
+        {% endif %}
         {{ content }}
     </main>
 

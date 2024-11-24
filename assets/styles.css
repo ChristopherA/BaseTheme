@@ -347,7 +347,6 @@ nav a.active {
 /* Responsive Typography */
 @media (min-width: 768px) {
   pre {
-    width: calc(var(--content-width) + 20ch);
     position: relative;
     left: -10ch;
     padding: var(--content-spacing);
