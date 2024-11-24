@@ -349,7 +349,7 @@ nav a.active {
   pre {
     width: calc(var(--content-width) + 20ch);
     position: relative;
-    left: calc((100% - var(--content-width)) / 2);
+    left: -10ch;
     padding: var(--content-spacing);
   }
 }
