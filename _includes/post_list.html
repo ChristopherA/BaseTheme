@@ -1,13 +1,13 @@
 <ul class="post-list">
   {% for post in site.posts %}
     <li class="post-list-item">
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+        {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
+      </time>
       <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
       {% if post.description %}
       <p class="post-description">{{ post.description }}</p>
       {% endif %}
-      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
-        {{ post.date | date: site.date_format | default: "%B %d, %Y" }}
-      </time>
     </li>
   {% endfor %}
 </ul>
