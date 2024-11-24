@@ -130,18 +130,12 @@ pre {
   background: var(--code-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: var(--content-padding) var(--content-padding);
-  margin: var(--section-spacing) calc(var(--content-padding) * -1);
+  padding: var(--content-padding);
+  margin: var(--section-spacing) 0;
   overflow-x: auto;
   font-size: var(--font-size-small);
   line-height: 1.6;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-}
-
-pre code {
-  display: block;
-  width: var(--content-width);
-  margin: 0 auto;
 }
 
 /* Post Date */
@@ -245,7 +239,6 @@ nav a.active {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   margin: var(--section-spacing) 0;
-  background: rgba(255, 255, 255, 0.02);
 }
 
 .page-list,
@@ -355,9 +348,9 @@ nav a.active {
 @media (min-width: 768px) {
   pre {
     width: calc(var(--content-width) + 20ch);
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding: var(--section-spacing);
+    position: relative;
+    left: calc((100% - var(--content-width)) / 2);
+    padding: var(--content-spacing);
   }
 }
 
