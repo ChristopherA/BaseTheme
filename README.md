@@ -7,6 +7,9 @@ For examples of building on this foundation, see the [demo site](https://christo
 ## Features
 
 - 🪶 Minimal, no-bloat foundation
+- 📝 Automatic front matter generation
+  - Page titles from first heading
+  - Layouts based on content location
 - 🔍 SEO-friendly metadata
 - 🗺️ Search engine sitemap
 - 📱 Mobile-first responsive design
@@ -33,9 +36,11 @@ If you prefer to start from scratch rather than using the template:
 
     # Required Plugins
     plugins:
-      - jekyll-remote-theme    # Required for remote themes
-      - jekyll-seo-tag        # Required for SEO meta tags
-      - jekyll-sitemap        # Required for search engines
+      - jekyll-remote-theme         # Required for remote themes
+      - jekyll-seo-tag             # Required for SEO meta tags
+      - jekyll-sitemap             # Required for search engines
+      - jekyll-titles-from-headings # Required for automatic page titles
+      - jekyll-default-layout      # Required for automatic layouts
 
     # Site Settings
     title: "Your Site Title"
@@ -61,21 +66,22 @@ If you prefer to start from scratch rather than using the template:
 2. Create your home page `index.md`:
     ```yaml
     ---
-    layout: default
-    title: Home
+    description: "Optional SEO description"  # Only if needed
     ---
 
-    Welcome to your new site!
+    # Welcome to Your Site
+
+    Your content starts here!
     ```
 
 3. Create a sample post in `_posts/YYYY-MM-DD-title.md` (optional - only if you want blog features):
     ```yaml
     ---
-    layout: post
-    title: "Your First Post"
-    date: YYYY-MM-DD
+    date: YYYY-MM-DD              # Required for posts
     description: "Optional SEO description"
     ---
+
+    # Your First Post
 
     Your post content here.
     ```
@@ -101,19 +107,38 @@ If you prefer to start from scratch rather than using the template:
     ```
    More details for running Jekyll locally are at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
 
-## Required Front Matter
+## Layouts
+
+BaseTheme uses automatic layout detection based on content location:
+
+1. Posts in `_posts/` → `post` layout
+2. Files named `index.md` → `home` layout
+3. Other `.md` files → `page` layout
+4. `.html` files → `default` layout
+
+You can override any automatic layout by specifying it in front matter:
 ```yaml
 ---
-layout: [default|post]
-title: "Page Title"
+layout: custom-layout
 ---
 ```
 
-## Optional Front Matter
+## Front Matter
+
+Required only for posts:
 ```yaml
 ---
-description: "SEO description"  # Recommended for SEO
-date: YYYY-MM-DD              # Required for posts only
+date: YYYY-MM-DD   # Date required for blog posts
+---
+```
+
+Optional front matter:
+```yaml
+---
+description: "SEO description"  # Optional: recommended for SEO
+permalink: /custom-url/         # Optional: custom URL path
+title: "Override Title"         # Optional: only if different from first heading
+layout: "custom"               # Optional: override automatic layout
 ---
 ```
 
