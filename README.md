@@ -148,4 +148,4 @@ This theme is released under [CC0](LICENSE) ("No Rights Reserved"). You can copy
 
 ## Author
 
-Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA) | ChristopherA@LifeWithAlacrity.com)
+Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA))
