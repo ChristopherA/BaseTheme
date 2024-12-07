@@ -11,6 +11,14 @@ plugins:
   - jekyll-remote-theme    # Required for using remote themes
   - jekyll-seo-tag         # Required for SEO meta tags
   - jekyll-sitemap         # Required for search engine sitemaps
+  - jekyll-titles-from-headings  # Required for automatic page titles
+  - jekyll-default-layout        # Required for automatic layouts
+
+# Plugin Configuration
+titles_from_headings:
+  strip_title: true      # Removes the first H1 from content
+  strip_spans: true      # Removes span tags from titles
+  collections: true      # Enables for collections
 
 # Default Site Settings
 # These serve as examples and can be overridden by sites using this theme
