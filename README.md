@@ -6,15 +6,17 @@ For examples of building on this foundation, see the [demo site](https://christo
 
 ## Features
 
-- 🪶 Minimal, no-bloat foundation
-- 🔍 SEO-friendly metadata
-- 🗺️ Search engine sitemap
-- 📱 Mobile-first responsive design
-- ♿️ WCAG accessibility compliant
-- 🌙 Dark mode support
-- 🖨️ Print-friendly styles
-- 🚫 No JavaScript required
-- 🎨 Easy to customize
+- 🪶 Minimal, no-bloat foundation, no JavaScript required
+- ✍️ Write naturally - no YAML front matter needed
+  - 📄 Page titles from first heading
+  - 🎯 Automatic layout detection
+- 🎨 Flexible styling options
+  - 🌓 Dark mode support
+  - 🖨️ Print-friendly layouts
+- 🌐 Responsive and accessible by design
+  - 📱 Mobile-first approach  
+  - ♿️ WCAG compliance built-in
+- 🔍 SEO-ready with metadata and sitemaps
 
 ## Demo & Template
 
@@ -33,9 +35,11 @@ If you prefer to start from scratch rather than using the template:
 
     # Required Plugins
     plugins:
-      - jekyll-remote-theme    # Required for remote themes
-      - jekyll-seo-tag        # Required for SEO meta tags
-      - jekyll-sitemap        # Required for search engines
+      - jekyll-remote-theme         # Required for remote themes
+      - jekyll-seo-tag             # Required for SEO meta tags
+      - jekyll-sitemap             # Required for search engines
+      - jekyll-titles-from-headings # Required for automatic page titles
+      - jekyll-default-layout      # Required for automatic layouts
 
     # Site Settings
     title: "Your Site Title"
@@ -61,21 +65,22 @@ If you prefer to start from scratch rather than using the template:
 2. Create your home page `index.md`:
     ```yaml
     ---
-    layout: default
-    title: Home
+    description: "Optional SEO description"  # Only if needed
     ---
 
-    Welcome to your new site!
+    # Welcome to Your Site
+
+    Your content starts here!
     ```
 
 3. Create a sample post in `_posts/YYYY-MM-DD-title.md` (optional - only if you want blog features):
     ```yaml
     ---
-    layout: post
-    title: "Your First Post"
-    date: YYYY-MM-DD
+    date: YYYY-MM-DD              # Required for posts
     description: "Optional SEO description"
     ---
+
+    # Your First Post
 
     Your post content here.
     ```
@@ -101,19 +106,38 @@ If you prefer to start from scratch rather than using the template:
     ```
    More details for running Jekyll locally are at the official [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/).
 
-## Required Front Matter
+## Layouts
+
+BaseTheme uses automatic layout detection based on content location:
+
+1. Posts in `_posts/` → `post` layout
+2. Files named `index.md` → `home` layout
+3. Other `.md` files → `page` layout
+4. `.html` files → `default` layout
+
+You can override any automatic layout by specifying it in front matter:
 ```yaml
 ---
-layout: [default|post]
-title: "Page Title"
+layout: custom-layout
 ---
 ```
 
-## Optional Front Matter
+## Front Matter
+
+Required only for blog entries in `_posts`:
 ```yaml
 ---
-description: "SEO description"  # Recommended for SEO
-date: YYYY-MM-DD              # Required for posts only
+date: YYYY-MM-DD   # Required for blog posts
+---
+```
+
+Optional front matter:
+```yaml
+---
+description: "SEO description"  # Optional: recommended for better SEO
+permalink: /custom-url/         # Optional: custom URL path instead of filename-based path
+title: "Override Title"         # Optional: only if different from first H1 heading
+layout: "custom"                # Optional: use specific layout instead of automatic one 
 ---
 ```
 
@@ -123,4 +147,4 @@ This theme is released under [CC0](LICENSE) ("No Rights Reserved"). You can copy
 
 ## Author
 
-Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA) | ChristopherA@LifeWithAlacrity.com)
+Created by Christopher Allen ([GitHub @ChristopherA](https://github.com/ChristopherA))

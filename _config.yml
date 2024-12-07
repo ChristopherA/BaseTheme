@@ -11,6 +11,8 @@ plugins:
   - jekyll-remote-theme    # Required for using remote themes
   - jekyll-seo-tag         # Required for SEO meta tags
   - jekyll-sitemap         # Required for search engine sitemaps
+  - jekyll-titles-from-headings  # Required for automatic page titles
+  - jekyll-default-layout        # Required for automatic layouts
 
 # Default Site Settings
 # These serve as examples and can be overridden by sites using this theme
@@ -26,3 +28,13 @@ markdown: kramdown         # Standard Jekyll Markdown renderer
 collections:              # Required for pages and posts functionality
   pages:                 # Enables _pages collection
     output: true        # Generates a page for each document in _pages
+
+# Plugin Settings
+titles_from_headings:
+  strip_spans: true      # Removes span tags from titles
+  strip_markdown: true   # Removes Markdown formatting from titles
+  strip_html: true       # Removes HTML tags from titles
+  strip_newlines: true   # Removes newlines from titles
+  strip_whitespace: true # Removes leading/trailing whitespace from titles
+  # lowercase: true        # Converts titles to lowercase
+  # separator: " | "       # Separator for title segments
